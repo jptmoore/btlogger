@@ -1,4 +1,4 @@
-AC_INIT(btlogger, 0.3.2, jmoore@zedstar.org)
+AC_INIT(btlogger, 0.3.3, jmoore@zedstar.org)
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/])
 AM_CONFIG_HEADER([src/config.h])
