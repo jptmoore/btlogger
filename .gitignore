@@ -23,3 +23,9 @@ src/config.h
 src/config.h.in
 src/stamp-h1
 src/.libs/
+src/btlogger
+src/log.o
+src/main.o
+src/marshal.o
+src/scan.o
+src/tweet.o
