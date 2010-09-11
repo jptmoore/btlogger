@@ -1,4 +1,4 @@
-AC_INIT(btlogger, 0.3.3, jmoore@zedstar.org)
+AC_INIT(btlogger, 0.3.4, jmoore@zedstar.org)
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([src/])
 AM_CONFIG_HEADER([src/config.h])
@@ -7,9 +7,13 @@ AC_DEFINE([PROGNAME],["btlogger"],["simple bluetooth to sqlite logger"])
 
 AC_DEFINE([DB],["/var/lib/misc/btlog.db"],["default location for database"])
 
+AC_DEFINE([CONSUMER_KEY],["PmtuSuvP4u8mjWl1QRhVsA"],["Consumer key"])
+
+AC_DEFINE([CONSUMER_SECRET],["U0eFKTIAG9x1t94neOM0JDyLQLvMrpqnJgOvauIis"],["Consumer secret"])
+
 AC_DEFINE([SCAN_FREQ],[20],["seconds to wait between scans"])
 
-AC_DEFINE([API_URL],["http://twitter.com/statuses/update.xml"],["RESTful API"])
+AC_DEFINE([API_URL],["https://twitter.com/"],["RESTful API"])
 
 # --enable-debug flag
 AC_ARG_ENABLE(debug,

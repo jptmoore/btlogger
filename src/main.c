@@ -81,7 +81,7 @@ int main(int argc, char** argv)
 
   // authenticate to twitter
   if (tweet) {
-    twitter = authenticate("PmtuSuvP4u8mjWl1QRhVsA", "U0eFKTIAG9x1t94neOM0JDyLQLvMrpqnJgOvauIis");
+    twitter = authenticate(CONSUMER_KEY, CONSUMER_SECRET);
   }
 
   // create btloggerObject
