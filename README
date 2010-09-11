@@ -1,26 +1,15 @@
 A Bluetooth scanner/logger which can post results to Twitter.
 
-Last tested on Ubuntu (Jaunty Jackalope)
-
 The sqlite database file will be installed by default to /var/lib/misc
 which requires root access. You can move it else where and use a command
 line flag to specifiy the location. Alternatively run btlogger as root:
 
 sudo btlogger
 
-For help run:
+To post to Twitter:
+
+btlogger -t
+
+To see all options run:
 
 btlogger --help
-
-Usage:
-  btlogger [OPTION...] - log bluetooth devices
-
-Help Options:
-  -?, --help                 Show help options
-
-Application Options:
-  -v, --verbose              Verbose output
-  -s, --scan frequency=N     Scan every N seconds
-  -d, --database             sqlite database
-  -u, --user                 Twitter username
-  -p, --pass                 Twitter password
