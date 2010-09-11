@@ -29,3 +29,4 @@ src/main.o
 src/marshal.o
 src/scan.o
 src/tweet.o
+*.tar.gz
