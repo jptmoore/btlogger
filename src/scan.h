@@ -1,18 +1,18 @@
 #ifndef SCAN_H_
 #define SCAN_H_
 
+#include <rest/oauth-proxy.h>
+
 typedef struct {
   sqlite3 *dbHandle;
-  gchar *user;
-  gchar *pass;
+  RestProxy *twitter;
   gint verbose;
   DBusGProxy *dbusObject;
 } btloggerObject;
 
 btloggerObject *setupService( DBusGConnection *connection, 
                               sqlite3 *db, 
-                              gchar *user, 
-                              gchar *pass, 
+			      RestProxy *twitter,
                               gboolean verbose );
                               
 void cleanupService(btloggerObject *bobj);

@@ -94,11 +94,10 @@ static void device_found(DBusGProxy *pobject, const char *address,
       log_output("address: %s name: %s", address, name);
     }
     if (name != NULL) {
-      logDevice( bobj->dbHandle, 
-                (char *)bobj->user, 
-                (char *)bobj->pass,
-                (char *)address, 
-                (char *)name);
+      logDevice(bobj->dbHandle, 
+		bobj->twitter, 
+		(char *)address, 
+		(char *)name);
     }
   }
 
@@ -107,8 +106,7 @@ static void device_found(DBusGProxy *pobject, const char *address,
 
 btloggerObject *setupService( DBusGConnection *connection, 
                               sqlite3 *db, 
-                              gchar *user, 
-                              gchar *pass, 
+			      RestProxy *twitter,
                               gboolean verbose )
 {
 
@@ -137,8 +135,7 @@ btloggerObject *setupService( DBusGConnection *connection,
   bobj->dbHandle = db;
   bobj->verbose = verbose;
   bobj->dbusObject = proxy;
-  bobj->user = user;
-  bobj->pass = pass;
+  bobj->twitter = twitter;
 
   // need to setup marshaller for devices found
   dbus_g_object_register_marshaller(marshal_VOID__STRING_BOXED,

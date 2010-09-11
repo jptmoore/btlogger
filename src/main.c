@@ -1,5 +1,5 @@
 // License: GPLv3
-// Copyright 2009 John P. T. Moore
+// Copyright 2010 John P. T. Moore
 // jmoore@zedstar.org
 
 #include <stdio.h>
@@ -25,14 +25,11 @@ int main(int argc, char** argv)
   GMainLoop *mainloop = NULL;
   GError *error = NULL;
   DBusGConnection *bus = NULL;
+  RestProxy *twitter = NULL;
   btloggerObject *bobj = NULL;
-  gchar *id = NULL;
-  gchar *name = NULL;
-  gchar *user = NULL;
-  gchar *pass = NULL;
   GOptionContext *context;
-
   gboolean verbose = FALSE;
+  gboolean tweet = FALSE;
   gint scan_freq = SCAN_FREQ;
   gchar *database = DB;
   sqlite3 *db;  
@@ -41,12 +38,9 @@ int main(int argc, char** argv)
   GOptionEntry entries[] = 
   {
     { "verbose", 'v', 0, G_OPTION_ARG_NONE, &verbose, "Verbose output", NULL },
+    { "tweet", 't', 0, G_OPTION_ARG_NONE, &tweet, "Tweet results", NULL },
     { "scan frequency", 's', 0, G_OPTION_ARG_INT, &scan_freq, "Scan every N seconds", "N" },
     { "database", 'd', 0, G_OPTION_ARG_FILENAME, &database, "sqlite database", NULL },
-    { "user", 'u', 0, G_OPTION_ARG_STRING, &user, "Twitter username", NULL },
-    { "pass", 'p', 0, G_OPTION_ARG_STRING, &pass, "Twitter password", NULL },
-    { "id", 'i', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &id, "unique id", NULL },
-    { "name", 'n', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &name, "name", NULL },
     { NULL }
   };
 
@@ -59,18 +53,6 @@ int main(int argc, char** argv)
     exit (EXIT_FAILURE);
   }  
 
-  if (verbose) { 
-    log_output("opening database: %s", database);
-  }
-  db = openLog(database);
-
-  // allow manual additions
-  if ( (id) && (name) ) {
-    logDevice(db, user, pass, id, name);
-    log_output("added id:%s name:%s", id, name);
-    exit (EXIT_SUCCESS);    
-  }
-
   g_log_set_always_fatal (G_LOG_LEVEL_WARNING);
 
   g_thread_init (NULL);
@@ -81,6 +63,14 @@ int main(int argc, char** argv)
     exit(EXIT_FAILURE);
   }
 
+  // open the database
+  if (verbose) { 
+    log_output("opening database: %s", database);
+  }
+  db = openLog(database);
+
+  
+  // connect to dbus
   bus = dbus_g_bus_get(DBUS_BUS_SYSTEM, &error);
   if (error != NULL)
   {
@@ -89,8 +79,13 @@ int main(int argc, char** argv)
     exit(EXIT_FAILURE);
   }
 
+  // authenticate to twitter
+  if (tweet) {
+    twitter = authenticate("PmtuSuvP4u8mjWl1QRhVsA", "U0eFKTIAG9x1t94neOM0JDyLQLvMrpqnJgOvauIis");
+  }
+
   // create btloggerObject
-  bobj = setupService(bus, db, user, pass, verbose);
+  bobj = setupService(bus, db, twitter, verbose);
   if (bobj == NULL) {
     exit(EXIT_FAILURE);  
   }
