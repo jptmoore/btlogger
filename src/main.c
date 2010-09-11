@@ -93,6 +93,8 @@ int main(int argc, char** argv)
   // wait scan_freq seconds then call findDevices
   g_timeout_add((scan_freq * 1000), (GSourceFunc)findDevices, (gpointer)bobj->dbusObject);
 
+  log_output("started btlogger");
+
   g_main_loop_run(mainloop);
   
   return EXIT_FAILURE;  

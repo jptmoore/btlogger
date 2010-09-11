@@ -23,11 +23,12 @@ RestProxy *authenticate(gchar *key, gchar *secret)
   if (!oauth_proxy_request_token (OAUTH_PROXY (proxy), "oauth/request_token", "oob", &error))
     g_error ("Cannot get request token: %s", error->message);
 
-  g_print ("Go to http://twitter.com/oauth/authorize?oauth_token=%s then enter the PIN\n",
+  g_print ("Go to http://twitter.com/oauth/authorize?oauth_token=%s \nenter PIN:",
 	   oauth_proxy_get_token (OAUTH_PROXY (proxy)));
 
-  fgets (pin, sizeof (pin), stdin);
-  g_strchomp (pin);
+  if (fgets(pin, sizeof (pin), stdin)) {
+      g_strchomp (pin);
+  }
 
   if (!oauth_proxy_access_token (OAUTH_PROXY (proxy), "oauth/access_token", pin, &error))
     g_error ("Cannot get access token: %s", error->message);

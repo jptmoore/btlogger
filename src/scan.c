@@ -10,6 +10,7 @@
 #include <sqlite3.h>
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib.h>
+#include <dbus/dbus-glib-lowlevel.h>
 #include <glib.h>
 #include <libsoup/soup.h>
 #include "scan.h"
