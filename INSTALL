@@ -1,0 +1,11 @@
+To get lastest source:
+
+git clone git@gitorious.org:btlogger/btlogger.git
+
+To compile from source:
+
+cd btlogger
+autoreconf -i
+./configure
+make
+sudo make install
