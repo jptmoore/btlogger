@@ -7,9 +7,9 @@ AC_DEFINE([PROGNAME],["btlogger"],["simple bluetooth to sqlite logger"])
 
 AC_DEFINE([DB],["/var/lib/misc/btlog.db"],["default location for database"])
 
-AC_DEFINE([CONSUMER_KEY],["PmtuSuvP4u8mjWl1QRhVsA"],["Consumer key"])
+AC_DEFINE([CONSUMER_KEY],["edit me"],["Consumer key"])
 
-AC_DEFINE([CONSUMER_SECRET],["U0eFKTIAG9x1t94neOM0JDyLQLvMrpqnJgOvauIis"],["Consumer secret"])
+AC_DEFINE([CONSUMER_SECRET],["edit me"],["Consumer secret"])
 
 AC_DEFINE([SCAN_FREQ],[20],["seconds to wait between scans"])
 
