@@ -46,7 +46,7 @@ PKG_CHECK_MODULES(SQLITE3, [sqlite3])
 PKG_CHECK_MODULES(GTHREAD, gthread-2.0)
 
 # check for librest
-PKG_CHECK_MODULES(LIBREST, rest-0.6)
+PKG_CHECK_MODULES(LIBREST, rest-0.7)
 
 # check for glib
 PKG_CHECK_MODULES(GLIB, [glib-2.0])
