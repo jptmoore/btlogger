@@ -42,7 +42,7 @@ int tweet(RestProxy *proxy, gchar *message)
   GError *error = NULL;
 
   call = rest_proxy_new_call (proxy);
-  rest_proxy_call_set_function (call, "statuses/update.xml");
+  rest_proxy_call_set_function (call, "/1.1/statuses/update.json");
   rest_proxy_call_set_method (call, "POST");
   rest_proxy_call_add_param (call, "status", message);
 

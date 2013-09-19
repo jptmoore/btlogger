@@ -13,7 +13,7 @@ AC_DEFINE([CONSUMER_SECRET],["edit me"],["Consumer secret"])
 
 AC_DEFINE([SCAN_FREQ],[20],["seconds to wait between scans"])
 
-AC_DEFINE([API_URL],["https://twitter.com/"],["RESTful API"])
+AC_DEFINE([API_URL],["https://api.twitter.com/"],["RESTful API"])
 
 # --enable-debug flag
 AC_ARG_ENABLE(debug,
